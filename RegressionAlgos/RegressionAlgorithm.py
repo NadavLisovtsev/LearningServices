@@ -1,3 +1,5 @@
+import csv
+
 class RegressionAlgorithmBaseClass:
 
     def __init__(self):
@@ -5,6 +7,18 @@ class RegressionAlgorithmBaseClass:
         self.name = None
 
     def train(self, trainX, trainY):
+        """
+        with open('trainX.csv', 'w') as f:
+            writer = csv.writer(f, delimiter=',')
+            for row in trainX:
+                writer.writerow(row)
+
+        with open('trainY.csv', 'w') as f:
+            writer = csv.writer(f, delimiter=',')
+            for row in trainY:
+                writer.writerow([row])
+        """
+
         self.model.fit(trainX, trainY)
         return self.model
 
