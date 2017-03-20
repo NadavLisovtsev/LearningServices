@@ -1,12 +1,18 @@
 import sys
 import sqlite3 as lite
 
+from Config.ConfigManager import ConfigManager
+
+
 class DAL:
     def readData(self, query):
         con = None
+        config = ConfigManager()
+
 
         try:
-            con = lite.connect(r'C:\Users\Ola\Desktop\Nadav\Investment Game\DB\InvestmentGameDB.db')
+            db_file = config.get_data("DAL", "DBFile")
+            con = lite.connect(db_file)
             cur = con.cursor()
             cur.execute(query)
             row = []
