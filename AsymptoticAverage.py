@@ -1,11 +1,13 @@
 from APIs.UtilitiesAPI import UtilitiesAPI
+from APIs.UtilitiesZMQAPI import UtilitiesZMQAPI
 
 
 class AsymptoticAverage:
+    def __init__(self):
+        self._server = UtilitiesZMQAPI()
+
     def calcAverage(self, l):
-        server = UtilitiesAPI()
-        return server.calcAsymptoticAverage(l)
+        return self._server.calcAsymptoticAverage(l)
 
     def addValToAverage(self, value, average):
-        server = UtilitiesAPI()
-        return server.AddValueToAsymptoticAverage(value, average)
+        return self._server.AddValueToAsymptoticAverage(value, average)

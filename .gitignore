@@ -45,5 +45,10 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+<<<<<<< HEAD
 Config/config.ini
 Config/config.ini
+=======
+trainX.csv
+trainY.csv
+>>>>>>> 69c6f7362001d1460822527be2727a26f3e0d8dc
