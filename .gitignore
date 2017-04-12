@@ -47,3 +47,6 @@ Temporary Items
 .apdisk
 trainX.csv
 trainY.csv
+Config/dev.ini
+Config/dev.ini
+Config/prod.ini
