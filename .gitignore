@@ -52,3 +52,5 @@ Config/config.ini
 trainX.csv
 trainY.csv
 >>>>>>> 69c6f7362001d1460822527be2727a26f3e0d8dc
+*.ini
+Config/prod.ini
