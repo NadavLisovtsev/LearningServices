@@ -23,3 +23,6 @@ class AllFeaturesParams:
             feature_params = FeatureParams
             feature_params.init_from_pure_dict(pure_dict[feature_name])
             self._params_dict[feature_name] = feature_params
+
+    def get_look_back(self):
+        return max([self._params_dict[feature_name].get_look_back() for feature_name in self._params_dict.keys()])

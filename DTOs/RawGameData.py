@@ -80,6 +80,7 @@ class RawGameData:
             i += 1
 
         return X, Y
+    
 
 
 

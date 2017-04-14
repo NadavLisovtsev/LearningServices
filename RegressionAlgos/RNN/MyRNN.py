@@ -13,5 +13,5 @@ class MyRNN(RegressionAlgorithmBaseClass):
      def calcError(self, testX, testY,  compareFunc):
          return self.model.calc_error(testX, testY)
 
-     def get_look_back(self):
+     def   get_look_back(self):
          return self._look_back

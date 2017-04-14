@@ -3,6 +3,7 @@ import numpy as np
 from DTOs.AllFeaturesParams import AllFeaturesParams
 from DTOs.GameData import GameData
 from DTOs.RawGameData import RawGameData
+from DTOs.RawPredictData import RawPredictData
 from DataManipulations.DAL import DAL
 from DataManipulations.DataOrganizer import DataOrganizer
 from Features.FeaturesManager import FeaturesManager
@@ -10,13 +11,21 @@ from Features.FeaturesManager import FeaturesManager
 
 class DataBuilder:
 
+    def build_predict_data(self, game_data: GameData, features_params: AllFeaturesParams):
+        features_manager = FeaturesManager()
+        features = features_manager.get_active_features()
+
+        predict_data = RawPredictData()
+        for feature in features:
+            params = features_params.get_feature_params(feature.get_name())
+            predict_data.merge_raw_predict_data(feature.get_predict_data(game_data, params))
+        return predict_data.get_X_vector()
+
     def build_xy_data(self, users_dict, features_params: AllFeaturesParams):
         features_manager = FeaturesManager()
         features = features_manager.get_active_features()
         y_feature = features_manager.get_y_feature()
         features.append(y_feature)
-
-
 
         user_count = 0
         print("total users: " + str(len(users_dict.keys())))

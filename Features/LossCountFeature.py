@@ -1,5 +1,6 @@
 from DTOs.GameData import GameData
 from DTOs.RawGameData import RawGameData
+from DTOs.RawPredictData import RawPredictData
 from DTOs.RoundData import RoundData
 from Features.Feature import Feature
 
@@ -19,6 +20,14 @@ class LossCountFeature(Feature):
             index += 1
         return raw_data
 
+    def _build_predict_data(self, game_data: GameData, params=None) -> RawPredictData:
+        predict_data = RawPredictData()
+        loss_count = 0
+        for round_num in game_data.get_prev_rounds():
+            round_data = game_data.get_round_data(round_num)
+            loss_count += 1 if round_data.get_Gain() < 0 else 0
+        predict_data.add_data([loss_count])
+        return predict_data
 
     def _get_params_ranges_dict(self):
         return None

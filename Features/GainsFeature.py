@@ -2,6 +2,7 @@ from Config.ConfigManager import ConfigManager
 from DTOs.FeatureParams import FeatureParams
 from DTOs.GameData import GameData
 from DTOs.RawGameData import RawGameData
+from DTOs.RawPredictData import RawPredictData
 from DTOs.RoundData import RoundData
 from Features.Feature import Feature
 
@@ -21,6 +22,16 @@ class GainsFeature(Feature):
             gains_list.append(round_data.get_Gain())
             index += 1
         return raw_data
+
+    def _build_predict_data(self, game_data: GameData, params=None) -> RawPredictData:
+        predict_data = RawPredictData()
+        gains_list = []
+        count = params.get_param("GainsCount")
+        for round_num in game_data.get_prev_rounds():
+            round_data = game_data.get_round_data(round_num)
+            gains_list.append(round_data.get_Gain())
+        predict_data.add_data(gains_list[-count:])
+        return predict_data
 
     def _get_params_ranges_dict(self):
         config = ConfigManager()

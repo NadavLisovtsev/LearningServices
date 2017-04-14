@@ -9,8 +9,11 @@ class RoundData:
     def init_from_json(self, json_data):
         self._data_dict = json.loads(json_data)
 
-    def init_from_dict(self, dict):
-        self._data_dict = dict
+    def init_from_pure_dict(self, pure_dict):
+        self.init_from_dict(pure_dict)
+
+    def init_from_dict(self, pure_dict):
+        self._data_dict = pure_dict
 # </editor-fold>
 
 # <editor-fold desc="Collective Getters">

@@ -1,4 +1,5 @@
 # coding: utf-8
+import numpy as np
 from Config.ConfigManager import ConfigManager
 from DAL.CsvDAL import CsvDAL
 from DTOs.AllFeaturesParams import AllFeaturesParams
@@ -8,6 +9,7 @@ from Learning.CrossValidators.CrossValidator import CrossValidator
 from Learning.CrossValidators.DefaultCrossValidator import DefaultCrossValidator
 from Learning.Trainers.TrainersManager import TrainerManager
 from Output.OutputManager import OutputManager
+from RegressionAlgos.MyNN import MyNN
 from RegressionAlgos.MySVM import MySVM
 from RegressionAlgos.RNN.MyRNN import MyRNN
 from RegressionAlgos.MyRF import RandomForest
@@ -34,9 +36,9 @@ def build_arbitary_params():
     GainParams = FeatureParams("Gains")
     FirstGainAverageParams = FeatureParams("AvgFirstGain")
 
-    ARparams.add_param("ARsCount", 10)
-    GainParams.add_param("GainsCount", 10)
-    FirstGainAverageParams.add_param("FirstGainCount", 5)
+    ARparams.add_param("ARsCount", 5)
+    GainParams.add_param("GainsCount", 5)
+    FirstGainAverageParams.add_param("FirstGainCount", 2)
     params.add_params(ARparams)
     params.add_params(GainParams)
     params.add_params(FirstGainAverageParams)
@@ -45,7 +47,9 @@ def build_arbitary_params():
 
 
 # *** Find Best Params ***
-algo = RandomForest()
+#algo = RandomForest()
+#algo = MySVM()
+algo = MyNN()
 csv_reader = CsvDAL()
 config = ConfigManager()
 
@@ -65,7 +69,9 @@ errors = cross_validator.run_algo(algo)
 
 print("")
 print(errors.get_errors_list())
-print(errors.get_mean_error())
+print('mean error: ' + str(errors.get_mean_error()))
+print('std error: ' + str(errors.get_errors_func_result(np.std)))
+
 
 
 

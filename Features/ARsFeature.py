@@ -2,6 +2,7 @@ from Config.ConfigManager import ConfigManager
 from DTOs.FeatureParams import FeatureParams
 from DTOs.GameData import GameData
 from DTOs.RawGameData import RawGameData
+from DTOs.RawPredictData import RawPredictData
 from DTOs.RoundData import RoundData
 from Features.Feature import Feature
 
@@ -21,6 +22,16 @@ class ARsFeature(Feature):
             ARs_list.append(round_data.get_AR())
             index += 1
         return raw_data
+
+    def _build_predict_data(self, game_data: GameData, params) -> RawPredictData:
+        predict_data = RawPredictData()
+        ARs_list = []
+        count = params.get_param("ARsCount")
+        for round_num in game_data.get_prev_rounds():
+            round_data = game_data.get_round_data(round_num)
+            ARs_list.append(round_data.get_AR())
+        predict_data.add_data(ARs_list[-count:])
+        return predict_data
 
     def _get_params_ranges_dict(self):
         config = ConfigManager()
