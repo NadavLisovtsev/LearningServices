@@ -1,10 +1,13 @@
 from AlgosManagerClasses.AlgosManager import AlgosManager
 
 
+from Learning.ParamsManager import ParamsManager
+
+
 class MinRoundsHandler:
 
     def handle_request(self, json_data):
 
-        manager = AlgosManager()
+        params_manager = ParamsManager()
         name = json_data["Name"]
-        return manager.get_algo_look_back(name)
+        return params_manager.get_algo_look_back(name)

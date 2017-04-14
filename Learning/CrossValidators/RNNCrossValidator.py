@@ -4,7 +4,7 @@ import numpy as np
 
 class RNNCrossValidator(CrossValidator):
 
-    def buildTrainTest(self):
+    def _buildTrainTest(self):
         var1 = self.X[0]
         var2 = self.X[1]
         Y = self.Y

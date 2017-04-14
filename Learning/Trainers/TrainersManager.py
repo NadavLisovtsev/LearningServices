@@ -8,7 +8,7 @@ class TrainerManager:
           self._trainers_dict = {
             'RNN': RNNTrainer(),
             'Default': DefaultTrainer()
-        }
+          }
 
     def __get_trainer(self, algo_name):
         return self._trainers_dict[algo_name] if algo_name in self._trainers_dict.keys() \
@@ -20,7 +20,6 @@ class TrainerManager:
             runner.add_algos(self.__get_trainer(algo.get_name()), [algo])
 
         return runner
-
 
     def get_trainer_name_by_algo(self, algo_name):
         return self.__get_trainer(algo_name).__class__.__name__

@@ -12,8 +12,6 @@ class DefaultCrossValidator(CrossValidator):
         lenY = len(Y)
         trainTestRatio = self.ratio
 
-
-
         #randomizing the data
         (r, c) = np.shape(X)
         Y = np.asarray(Y).reshape((lenY, 1))
